@@ -1,12 +1,18 @@
 package com.telecom.call.Model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -15,7 +21,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "User")
+@Table(name = "user")
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,12 +33,17 @@ public class User {
   private String email;
   @Column(name = "password", nullable = false)
   private String password;
-  @Column(name = "phone", nullable = false, unique = true)
-  private String Phone;
-  @Column(name = "localTime", nullable = false)
+  @Column(name = "creationDate", nullable = false)
   private LocalDateTime creationDate;
   @Column(name = "status", nullable = false)
   private String status;
+  @OneToOne(mappedBy = "extension", cascade = CascadeType.MERGE)
+  private Extension extension;
+  @ManyToOne
+  @JoinColumn(name = "rol_id")
+  private Rol rol;
+  @OneToMany(mappedBy = "user")
+  private List<Call> calls;
 
   @PrePersist
   protected void onDate() {

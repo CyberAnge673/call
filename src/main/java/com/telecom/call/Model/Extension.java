@@ -16,7 +16,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class extension {
+@Table(name = "extension")
+public class Extension {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id_call", unique = true, nullable = false)
@@ -29,6 +30,9 @@ public class extension {
   private String host;
   @Column(name = "host", nullable = false)
   private LocalDateTime creation_date;
+  @OneToOne
+  @JoinColumn(name = "user")
+  private User user;
 
   @PrePersist
   protected void onCreate() {
