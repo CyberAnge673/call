@@ -36,7 +36,7 @@ public class Call {
   private String context;
   @Column(name = "start", nullable = false)
   private LocalDateTime start;
-  @Column(name = "start", nullable = false)
+  @Column(name = "call_duration", nullable = false)
   private int duration;
   @Column(name = "billsec", nullable = false)
   private int billsec;

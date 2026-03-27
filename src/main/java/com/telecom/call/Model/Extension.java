@@ -21,14 +21,14 @@ public class Extension {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id_call", unique = true, nullable = false)
-  private Double id;
+  private Long id;
   @Column(name = "number", unique = true, nullable = false)
   private int number;
   @Column(name = "call_status", unique = true, nullable = false)
   private String status;
   @Column(name = "host", unique = true, nullable = false)
   private String host;
-  @Column(name = "host", nullable = false)
+  @Column(name = "creation_date", nullable = false)
   private LocalDateTime creation_date;
   @OneToOne
   @JoinColumn(name = "user_id")

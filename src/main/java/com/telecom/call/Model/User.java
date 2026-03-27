@@ -1,8 +1,10 @@
 package com.telecom.call.Model;
 
-import java.io.ObjectInputFilter.Status;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import org.hibernate.event.spi.MergeContext;
+
 import com.telecom.call.Enums.StatusType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -30,23 +32,30 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id_user", unique = true, nullable = false)
   private Long id;
+
   @Column(name = "name_user", nullable = true)
   private String name;
+
   @Column(name = "email", nullable = false, unique = true)
   private String email;
+
   @Column(name = "password", nullable = false)
   private String password;
+
   @Column(name = "creation_date", nullable = false)
   private LocalDateTime creationDate;
+
   @Enumerated(EnumType.STRING)
   @Column(name = "status", nullable = false)
   private StatusType userStatus;
   // Relaciones
   @OneToOne(mappedBy = "user", cascade = CascadeType.MERGE)
   private Extension extension;
+
   @ManyToOne
   @JoinColumn(name = "rol_id")
   private Rol rol;
+
   @OneToMany(mappedBy = "user")
   private List<Call> calls;
 
