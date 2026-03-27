@@ -1,11 +1,14 @@
 package com.telecom.call.Model;
 
+import java.io.ObjectInputFilter.Status;
 import java.time.LocalDateTime;
 import java.util.List;
-
+import com.telecom.call.Enums.StatusType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,11 +36,13 @@ public class User {
   private String email;
   @Column(name = "password", nullable = false)
   private String password;
-  @Column(name = "creationDate", nullable = false)
+  @Column(name = "creation_date", nullable = false)
   private LocalDateTime creationDate;
+  @Enumerated(EnumType.STRING)
   @Column(name = "status", nullable = false)
-  private String status;
-  @OneToOne(mappedBy = "extension", cascade = CascadeType.MERGE)
+  private StatusType userStatus;
+  // Relaciones
+  @OneToOne(mappedBy = "user", cascade = CascadeType.MERGE)
   private Extension extension;
   @ManyToOne
   @JoinColumn(name = "rol_id")
@@ -48,6 +53,9 @@ public class User {
   @PrePersist
   protected void onDate() {
     creationDate = LocalDateTime.now();
+    if (userStatus == null) {
+      userStatus = StatusType.REGISTERED;
+    }
   }
 
 }

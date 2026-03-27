@@ -31,7 +31,7 @@ public class Extension {
   @Column(name = "host", nullable = false)
   private LocalDateTime creation_date;
   @OneToOne
-  @JoinColumn(name = "user")
+  @JoinColumn(name = "user_id")
   private User user;
 
   @PrePersist
