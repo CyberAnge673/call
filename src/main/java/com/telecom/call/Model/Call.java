@@ -2,8 +2,12 @@ package com.telecom.call.Model;
 
 import java.time.LocalDateTime;
 
+import com.telecom.call.Enums.ContextType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,13 +36,14 @@ public class Call {
   private String origin;
   @Column(name = "destination", nullable = false)
   private String destination;
+  @Enumerated(EnumType.STRING)
   @Column(name = "context", nullable = false)
-  private String context;
+  private ContextType context;
   @Column(name = "start", nullable = false)
   private LocalDateTime start;
-  @Column(name = "call_duration", nullable = false)
+  @Column(name = "call_duration")
   private int duration;
-  @Column(name = "billsec", nullable = false)
+  @Column(name = "billsec")
   private int billsec;
   @Column(name = "chanel", nullable = false)
   private String chanel;

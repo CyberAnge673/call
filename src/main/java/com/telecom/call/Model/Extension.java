@@ -4,6 +4,10 @@ import jakarta.persistence.Entity;
 
 import java.time.LocalDateTime;
 
+import com.telecom.call.Enums.ContextType;
+import com.telecom.call.Enums.ExtensionType;
+import com.telecom.call.Enums.StatusType;
+
 import jakarta.persistence.*;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -20,22 +24,46 @@ import lombok.Setter;
 public class Extension {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_call", unique = true, nullable = false)
+  @Column(name = "id_extension", unique = true, nullable = false)
   private Long id;
+
   @Column(name = "number", unique = true, nullable = false)
-  private int number;
-  @Column(name = "call_status", unique = true, nullable = false)
-  private String status;
-  @Column(name = "host", unique = true, nullable = false)
-  private String host;
+  private String number; // numero de la extension
+  //
+  @Column(name = "password_secret")
+  private String password; // contraseña de SIP
+  //
+  @Enumerated(EnumType.STRING)
+  @Column(name = "status", nullable = false)
+  private StatusType status; // estado de la llamada
+  //
+  @Column(name = "host")
+  private String host; // direccion ip del telefono
+  //
   @Column(name = "creation_date", nullable = false)
   private LocalDateTime creation_date;
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "extension_type", nullable = false)
+  private ExtensionType extensionType = ExtensionType.SIP;
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "context_type", nullable = false)
+  private ContextType contextType = ContextType.INTERNAL;
+
+  @Column(name = "display_name")
+  private String displayname;
+
+  @Column(name = "last_register")
+  private LocalDateTime lastRegister;
+
   @OneToOne
   @JoinColumn(name = "user_id")
   private User user;
 
   @PrePersist
   protected void onCreate() {
+    lastRegister = LocalDateTime.now();
     creation_date = LocalDateTime.now();
   }
 

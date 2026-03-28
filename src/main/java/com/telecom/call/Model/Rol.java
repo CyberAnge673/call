@@ -35,6 +35,9 @@ public class Rol {
   @Enumerated(EnumType.STRING)
   @Column(name = "name", unique = true, nullable = false)
   private RolType name = RolType.STANDARD;
+
+  @Column(name = "description")
+  private String description;
   // relacion
   @OneToMany(mappedBy = "rol")
   private List<User> users = new ArrayList<>();

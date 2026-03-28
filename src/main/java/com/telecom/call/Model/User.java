@@ -46,7 +46,7 @@ public class User {
   private LocalDateTime creationDate;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "status", nullable = false)
+  @Column(name = "statu_user", nullable = false)
   private StatusType userStatus;
   // Relaciones
   @OneToOne(mappedBy = "user", cascade = CascadeType.MERGE)
@@ -63,7 +63,7 @@ public class User {
   protected void onDate() {
     creationDate = LocalDateTime.now();
     if (userStatus == null) {
-      userStatus = StatusType.REGISTERED;
+      userStatus = StatusType.INACTIVE;
     }
   }
 
