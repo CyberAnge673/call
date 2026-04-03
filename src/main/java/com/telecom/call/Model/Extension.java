@@ -1,20 +1,22 @@
 package com.telecom.call.Model;
 
+import com.telecom.call.Model.PhoneCall;
 import jakarta.persistence.Entity;
-
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.telecom.call.Enums.ContextType;
 import com.telecom.call.Enums.ExtensionType;
 import com.telecom.call.Enums.StatusType;
-
 import jakarta.persistence.*;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Builder
 @Entity
 @Getter
 @Setter
@@ -27,7 +29,7 @@ public class Extension {
   @Column(name = "id_extension", unique = true, nullable = false)
   private Long id;
 
-  @Column(name = "number", unique = true, nullable = false)
+  @Column(name = "number", unique = true, nullable = false, length = 30)
   private String number; // numero de la extension
   //
   @Column(name = "password_secret")
@@ -57,14 +59,20 @@ public class Extension {
   @Column(name = "last_register")
   private LocalDateTime lastRegister;
 
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "user_id")
   private User user;
+
+  @OneToMany(mappedBy = "extension", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private List<PhoneCall> phoneCalls;
 
   @PrePersist
   protected void onCreate() {
     lastRegister = LocalDateTime.now();
     creation_date = LocalDateTime.now();
+    if (status == null) {
+      status = StatusType.INACTIVE;
+    }
   }
 
 }

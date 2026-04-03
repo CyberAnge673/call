@@ -3,8 +3,6 @@ package com.telecom.call.Model;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.hibernate.event.spi.MergeContext;
-
 import com.telecom.call.Enums.StatusType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -20,9 +18,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+@Builder
 @Entity
 @Getter
 @Setter
@@ -46,7 +46,7 @@ public class User {
   private LocalDateTime creationDate;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "statu_user", nullable = false)
+  @Column(name = "status_user", nullable = false)
   private StatusType userStatus;
   // Relaciones
   @OneToOne(mappedBy = "user", cascade = CascadeType.MERGE)
@@ -57,7 +57,7 @@ public class User {
   private Rol rol;
 
   @OneToMany(mappedBy = "user")
-  private List<Call> calls;
+  private List<PhoneCall> calls;
 
   @PrePersist
   protected void onDate() {

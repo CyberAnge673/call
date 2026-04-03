@@ -24,10 +24,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@Table(name = "call")
+@Table(name = "phone_call")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Call {
+public class PhoneCall {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "call_id", unique = true, nullable = false)
@@ -45,9 +45,12 @@ public class Call {
   private int duration;
   @Column(name = "billsec")
   private int billsec;
-  @Column(name = "chanel", nullable = false)
-  private String chanel;
+  @Column(name = "channel", nullable = false)
+  private String channel;
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;
+  @ManyToOne
+  @JoinColumn(name = "extension_id")
+  private Extension extension;
 }
