@@ -1,23 +1,12 @@
 package com.telecom.call.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import com.telecom.call.Enums.RolType;
 
 @Entity
@@ -25,7 +14,6 @@ import com.telecom.call.Enums.RolType;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Table(name = "rol")
 public class Rol {
   @Id

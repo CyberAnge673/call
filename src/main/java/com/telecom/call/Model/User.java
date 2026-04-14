@@ -4,25 +4,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.telecom.call.Enums.StatusType;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
-import lombok.Builder;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
@@ -47,7 +36,7 @@ public class User {
 
   @Enumerated(EnumType.STRING)
   @Column(name = "status_user", nullable = false)
-  private StatusType userStatus;
+  private StatusType userStatusType;
   // Relaciones
   @OneToOne(mappedBy = "user", cascade = CascadeType.MERGE)
   private Extension extension;
@@ -62,8 +51,8 @@ public class User {
   @PrePersist
   protected void onDate() {
     creationDate = LocalDateTime.now();
-    if (userStatus == null) {
-      userStatus = StatusType.INACTIVE;
+    if (userStatusType == null) {
+      userStatusType = StatusType.ACTIVE;
     }
   }
 

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import com.telecom.call.Model.PhoneCall;
 
 @Repository
-public interface CallRepo extends JpaRepository<PhoneCall, Long> {
+public interface PhoneCallRepo extends JpaRepository<PhoneCall, Long> {
 }
