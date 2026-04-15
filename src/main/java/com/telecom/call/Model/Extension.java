@@ -1,6 +1,5 @@
 package com.telecom.call.Model;
 
-import com.telecom.call.Model.PhoneCall;
 import jakarta.persistence.Entity;
 import java.time.LocalDateTime;
 import java.util.List;
