@@ -8,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/*
+ * dto respuesta de las llamas
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

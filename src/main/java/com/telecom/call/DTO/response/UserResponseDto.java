@@ -6,6 +6,7 @@ import lombok.*;
 
 @Builder
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -14,6 +15,6 @@ public class UserResponseDto {
   private String name;
   private String email;
   private String userStatus;
-  private String rolName;
-  private String extensionId;
+  private Long rolid;
+  private Long extensionId;
 }

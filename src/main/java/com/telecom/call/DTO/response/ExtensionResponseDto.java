@@ -9,6 +9,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/*
+ * dto respuesta Extension dto
+ */
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
