@@ -19,5 +19,6 @@ public class UserCreateRequestDto {
   private String email;
   @NotBlank(message = "el password es obligatorio")
   private String password;
+  private String userstatus;
 
 }

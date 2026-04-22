@@ -6,10 +6,12 @@ import java.util.List;
 import com.telecom.call.Enums.StatusType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
