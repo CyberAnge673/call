@@ -3,17 +3,12 @@ package com.telecom.call.Model;
 import jakarta.persistence.Entity;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import com.telecom.call.Enums.ContextType;
 import com.telecom.call.Enums.ExtensionType;
 import com.telecom.call.Enums.StatusType;
 import jakarta.persistence.*;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Builder
 @Entity

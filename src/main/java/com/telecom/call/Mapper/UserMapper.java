@@ -10,6 +10,10 @@ import com.telecom.call.DTO.request.UserCreateRequestDto;
  */
 public class UserMapper {
 
+  private UserMapper(){
+    throw new UnsupportedOperationException("Esta clase no se puede instanciar");
+  }
+
   public static UserResponseDto toUser(User user) {
     if (user == null) {
       return null;

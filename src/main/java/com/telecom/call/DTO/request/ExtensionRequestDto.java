@@ -24,7 +24,9 @@ public class ExtensionRequestDto {
   private String displayname;
   @NotBlank(message = "userId obligatorio")
   private Long userId;
-  private ExtensionType extensionType;
-  private ContextType contextType;
+  private String status;
+  private String host;
+  private String extensionType;
+  private String contextType;
 
 }
