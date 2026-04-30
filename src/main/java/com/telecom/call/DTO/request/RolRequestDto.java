@@ -14,7 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RolRequestDto {
   @NotBlank(message = "nombre requerido")
-  private String nombre;
+  private String name;
   @NotBlank(message = "Descripcion requerida")
   private String Descripcion;
   @NotBlank(message = "id del usuario requerido")
