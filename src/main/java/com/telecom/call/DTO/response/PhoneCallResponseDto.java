@@ -5,12 +5,15 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /*
  * dto respuesta de las llamas
  */
+
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

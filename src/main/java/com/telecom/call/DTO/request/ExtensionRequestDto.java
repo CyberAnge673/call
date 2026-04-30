@@ -1,8 +1,4 @@
 package com.telecom.call.DTO.request;
-
-import com.telecom.call.Enums.ContextType;
-import com.telecom.call.Enums.ExtensionType;
-
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
