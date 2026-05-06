@@ -14,3 +14,9 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
+  logging:
+    file:
+      name: "logs/telecom.log"
+    level:
+      org.springframework: WARN
+      com.teleco: INFO

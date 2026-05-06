@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RolResponseDto {
   private Long rolId;
+  private String rolname;
   private String descripcion;
   private Long userId;
   private List<UserResponseDto> users;
