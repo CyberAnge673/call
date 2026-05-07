@@ -7,4 +7,4 @@ services:
       - "MYSQL_ROOT_PASSWORD=angel1052"
       - "MYSQL_USER=angel"
     ports:
-      - "3306"
+      - "3307:3306"

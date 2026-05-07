@@ -10,33 +10,73 @@ import com.telecom.call.DTO.request.UserCreateRequestDto;
  */
 public class UserMapper {
 
-  private UserMapper(){
+  private UserMapper() {
     throw new UnsupportedOperationException("Esta clase no se puede instanciar");
   }
 
-  public static UserResponseDto toUser(User user) {
+  // Entity → ResponseDto (para devolver datos)
+  public static UserResponseDto toUserResponseDto(User user) {
     if (user == null) {
       return null;
     }
-    return UserResponseDto.builder().id(user.getId())
+
+    return UserResponseDto.builder()
+        .id(user.getId())
         .email(user.getEmail())
         .name(user.getName())
-        .userStatus(user.getUserStatusType().toString())
-        .extensionId(user.getExtension().getId())
-        .rolid(user.getRol().getId())
+        .userStatus(user.getUserStatusType() != null ? user.getUserStatusType().toString() : null)
+        .extensionId(user.getExtension() != null ? user.getExtension().getId() : null)
+        .rolid(user.getRol() != null ? user.getRol().getId() : null)
         .build();
-
   }
 
+  // RequestDto → Entity (para guardar)
   public static User toUser(UserCreateRequestDto userCdto) {
     if (userCdto == null) {
       return null;
-
     }
-    return User.builder()
+
+    User.UserBuilder builder = User.builder()
         .name(userCdto.getName())
         .email(userCdto.getEmail())
-        .password(userCdto.getPassword())
-        .userStatusType(StatusType.valueOf(userCdto.getUserstatus())).build();
+        .password(userCdto.getPassword());
+
+    // Manejar StatusType de forma segura
+    if (userCdto.getUserstatus() != null) {
+      try {
+        builder.userStatusType(StatusType.valueOf(userCdto.getUserstatus()));
+      } catch (IllegalArgumentException e) {
+        // Valor por defecto si el status no es válido
+        builder.userStatusType(StatusType.ACTIVE);
+      }
+    } else {
+      builder.userStatusType(StatusType.ACTIVE); // Valor por defecto
+    }
+
+    return builder.build();
+  }
+
+  // Método para actualizar entidad existente (update parcial)
+  public static void updateUser(User existingUser, UserCreateRequestDto userCdto) {
+    if (existingUser == null || userCdto == null) {
+      return;
+    }
+
+    if (userCdto.getName() != null) {
+      existingUser.setName(userCdto.getName());
+    }
+    if (userCdto.getEmail() != null) {
+      existingUser.setEmail(userCdto.getEmail());
+    }
+    if (userCdto.getPassword() != null && !userCdto.getPassword().isEmpty()) {
+      existingUser.setPassword(userCdto.getPassword());
+    }
+    if (userCdto.getUserstatus() != null) {
+      try {
+        existingUser.setUserStatusType(StatusType.valueOf(userCdto.getUserstatus()));
+      } catch (IllegalArgumentException e) {
+        // Ignorar valor inválido
+      }
+    }
   }
 }

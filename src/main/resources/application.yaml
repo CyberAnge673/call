@@ -7,16 +7,19 @@ spring:
     password: angel1052
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
-        format_sql: true
+        format_sql: false
   logging:
     file:
       name: "logs/telecom.log"
     level:
+      root: WARN
       org.springframework: WARN
+      org.springframework.web: ERROR
+      org.hibernate: ERROR
       com.teleco: INFO

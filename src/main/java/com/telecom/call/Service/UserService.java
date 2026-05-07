@@ -32,7 +32,9 @@ public class UserService {
   public boolean isUserExist(Long userId) {
     try {
       log.info("consulta realizada");
-      return userRepo.existsById(userId);
+      boolean user = userRepo.existsById(userId);
+      log.info("usuario existe");
+      return user;
     } catch (Exception e) {
       log.error("ocurio un erro:" + e);
       return false;
@@ -45,7 +47,7 @@ public class UserService {
       log.info("Procesando usarios");
       return userRepo.findAll()
           .stream()
-          .map(UserMapper::toUser)
+          .map(UserMapper::toUserResponseDto)
           .toList();
 
     } catch (Exception e) {
@@ -59,7 +61,7 @@ public class UserService {
     try {
       log.info("procesando el id del usaurio");
       return userRepo.findById(userId)
-          .map(UserMapper::toUser)
+          .map(UserMapper::toUserResponseDto)
           .orElse(null);
 
     } catch (Exception e) {
