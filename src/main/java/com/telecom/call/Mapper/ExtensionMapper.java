@@ -3,17 +3,19 @@ package com.telecom.call.Mapper;
 import com.telecom.call.Model.Extension;
 
 import com.telecom.call.DTO.response.ExtensionResponseDto;
+import com.telecom.call.Enums.ContextType;
 import com.telecom.call.Enums.ExtensionType;
 import com.telecom.call.Enums.StatusType;
 import com.telecom.call.DTO.request.ExtensionRequestDto;
 import java.util.Optional;
+
 public class ExtensionMapper {
 
-  private ExtensionMapper(){
+  private ExtensionMapper() {
     throw new UnsupportedOperationException("esta clase no se puede instanciar");
   }
 
-  public static ExtensionResponseDto toExtension(Extension extension) {
+  public static ExtensionResponseDto toExtensionResponse(Extension extension) {
     if (extension == null) {
       return null;
     }
@@ -32,35 +34,36 @@ public class ExtensionMapper {
         .build();
 
   }
-  public static Extension toExtension(ExtensionRequestDto extensiondto){
-    
-    if(extensiondto == null){
+
+  public static Extension toExtension(ExtensionRequestDto extensiondto) {
+
+    if (extensiondto == null) {
       return null;
     }
     return Extension.builder()
-    .number(extensiondto.getNumber())
-    .password(extensiondto.getPassword())
-    .status(parseStatus(extensiondto.getStatus()).orElse(null))
-    .host(extensiondto.getHost())
-    .extensionType(parseExtensionType(extensiondto.getExtensionType()).orElse(null))
-    .contextType(null)
-    .build();
+        .number(extensiondto.getNumber())
+        .password(extensiondto.getPassword())
+        .status(parseStatus(extensiondto.getStatus()).orElse(null))
+        .host(extensiondto.getHost())
+        .extensionType(parseExtensionType(extensiondto.getExtensionType()).orElse(null))
+        .contextType(null)
+        .build();
   }
 
-  private static Optional<StatusType> parseStatus(String status){
-    if(status == null || status.isBlank()){
+  private static Optional<StatusType> parseStatus(String status) {
+    if (status == null || status.isBlank()) {
       return Optional.empty();
     }
-    try{
+    try {
       return Optional.of(StatusType.valueOf(status.toUpperCase()));
 
-    }catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       return Optional.empty();
     }
   }
 
-  private static Optional<ExtensionType> parseExtensionType(String extensiontype){
-    if(extensiontype == null || extensiontype.isBlank()){
+  private static Optional<ExtensionType> parseExtensionType(String extensiontype) {
+    if (extensiontype == null || extensiontype.isBlank()) {
       return Optional.empty();
     }
     try {
@@ -69,7 +72,23 @@ public class ExtensionMapper {
       return Optional.empty();
     }
   }
+
+  public static StatusType parseStatusType(String status) {
+    return parseStatus(status).orElse(StatusType.INACTIVE);
+  }
+
+  public static ExtensionType parseExtensionTypeEnum(String extensionType) {
+    return parseExtensionType(extensionType).orElse(ExtensionType.SIP);
+  }
+
+  public static ContextType parseContextType(String contextType) {
+    if (contextType == null || contextType.isBlank()) {
+      return ContextType.INTERNAL;
+    }
+    try {
+      return ContextType.valueOf(contextType.toUpperCase());
+    } catch (IllegalArgumentException e) {
+      return ContextType.INTERNAL;
+    }
+  }
 }
-
-
-
