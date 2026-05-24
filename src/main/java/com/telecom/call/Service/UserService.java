@@ -1,18 +1,17 @@
 package com.telecom.call.Service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.telecom.call.DTO.request.UserCreateRequestDto;
 import com.telecom.call.DTO.response.UserResponseDto;
 import com.telecom.call.Repository.UserRepo;
-
 import lombok.extern.slf4j.Slf4j;
-
 import com.telecom.call.Mapper.UserMapper;
 import com.telecom.call.Model.User;
-
+/*
+servicio para la entidad usuario, se encarga de la logica de negocio y de la comunicacion con el repositorio, ademas de manejar los errores que puedan ocurrir en el proceso
+ */
 @Slf4j
 @Service
 public class UserService {
