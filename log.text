@@ -1,0 +1,84 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------------< com.telecom:call >--------------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ call ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ call ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 33 source files with javac [debug parameters release 21] to target/classes
+[INFO] -------------------------------------------------------------
+[WARNING] COMPILATION WARNING : 
+[INFO] -------------------------------------------------------------
+[WARNING] /home/angel/Proyectos/call/src/main/java/com/telecom/call/model/Extension.java:[44,25] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/angel/Proyectos/call/src/main/java/com/telecom/call/model/Extension.java:[48,23] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/angel/Proyectos/call/src/main/java/com/telecom/call/model/Rol.java:[27,19] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/angel/Proyectos/call/src/main/java/com/telecom/call/model/Rol.java:[33,22] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[INFO] 4 warnings 
+[INFO] -------------------------------------------------------------
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/ExtensionService.java:[8,34] package com.telecom.call.Exception does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/ExtensionService.java:[9,35] package com.telecom.call.Repository does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/ExtensionService.java:[10,31] package com.telecom.call.Mapper does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/ExtensionService.java:[20,3] cannot find symbol
+  symbol:   class ExtensionRepo
+  location: class com.telecom.call.service.ExtensionService
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/PhoneCallService.java:[8,31] package com.telecom.call.Mapper does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/PhoneCallService.java:[9,35] package com.telecom.call.Repository does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/PhoneCallService.java:[18,13] cannot find symbol
+  symbol:   class PhoneCallRepo
+  location: class com.telecom.call.service.PhoneCallService
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/UserService.java:[8,35] package com.telecom.call.Repository does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/UserService.java:[10,31] package com.telecom.call.Mapper does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/UserService.java:[19,11] cannot find symbol
+  symbol:   class UserRepo
+  location: class com.telecom.call.service.UserService
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/RolService.java:[8,31] package com.telecom.call.Mapper does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/RolService.java:[9,35] package com.telecom.call.Repository does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/RolService.java:[17,3] cannot find symbol
+  symbol:   class RolRepo
+  location: class com.telecom.call.service.RolService
+[INFO] 13 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.149 s
+[INFO] Finished at: 2026-06-08T14:10:27-05:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.1:compile (default-compile) on project call: Compilation failure: Compilation failure: 
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/ExtensionService.java:[8,34] package com.telecom.call.Exception does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/ExtensionService.java:[9,35] package com.telecom.call.Repository does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/ExtensionService.java:[10,31] package com.telecom.call.Mapper does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/ExtensionService.java:[20,3] cannot find symbol
+[ERROR]   symbol:   class ExtensionRepo
+[ERROR]   location: class com.telecom.call.service.ExtensionService
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/PhoneCallService.java:[8,31] package com.telecom.call.Mapper does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/PhoneCallService.java:[9,35] package com.telecom.call.Repository does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/PhoneCallService.java:[18,13] cannot find symbol
+[ERROR]   symbol:   class PhoneCallRepo
+[ERROR]   location: class com.telecom.call.service.PhoneCallService
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/UserService.java:[8,35] package com.telecom.call.Repository does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/UserService.java:[10,31] package com.telecom.call.Mapper does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/UserService.java:[19,11] cannot find symbol
+[ERROR]   symbol:   class UserRepo
+[ERROR]   location: class com.telecom.call.service.UserService
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/RolService.java:[8,31] package com.telecom.call.Mapper does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/RolService.java:[9,35] package com.telecom.call.Repository does not exist
+[ERROR] /home/angel/Proyectos/call/src/main/java/com/telecom/call/service/RolService.java:[17,3] cannot find symbol
+[ERROR]   symbol:   class RolRepo
+[ERROR]   location: class com.telecom.call.service.RolService
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
