@@ -1,53 +1,57 @@
 package com.telecom.call.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.telecom.call.dto.request.PhoneCallRequestDto;
 import com.telecom.call.dto.response.PhoneCallResponseDto;
 import com.telecom.call.mapper.PhoneCallMapper;
 import com.telecom.call.repository.PhoneCallRepo;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
 public class PhoneCallService {
 
-  @Autowired
-  private PhoneCallRepo phoneCallRepo;
+    @Autowired
+    private PhoneCallRepo phoneCallRepo;
 
-  public void savePhoneCall(PhoneCallRequestDto phoneCallRequestDto) {
-    try {
-      phoneCallRepo.save(PhoneCallMapper.toPhoneCall(phoneCallRequestDto));
-      log.info("llamada guardada");
-    } catch (Exception e) {
-      // Manejar la excepción de manera adecuada, por ejemplo, registrándola o
-      // lanzando una excepción personalizada
-      log.error("Error al guardar la llamada telefónica: {}", e.getMessage());
+    public void savePhoneCall(PhoneCallRequestDto phoneCallRequestDto) {
+        try {
+            phoneCallRepo.save(
+                PhoneCallMapper.toPhoneCall(phoneCallRequestDto)
+            );
+            log.info("llamada guardada");
+        } catch (Exception e) {
+            // Manejar la excepción de manera adecuada, por ejemplo, registrándola o
+            // lanzando una excepción personalizada
+            log.error(
+                "Error al guardar la llamada telefónica: {}",
+                e.getMessage()
+            );
+        }
     }
-  }
 
-  public List<PhoneCallResponseDto> getAllPhoneCalls() {
-    return phoneCallRepo.findAll()
-        .stream()
-        .map(PhoneCallMapper::toPhoneCall)
-        .toList();
-
-  }
-
-  public void deletePhoneCall(Long id) {
-    try {
-      if (!(phoneCallRepo.existsById(id))) {
-        phoneCallRepo.deleteById(id);
-        throw new RuntimeException("la llamada no existe");
-
-      }
-      phoneCallRepo.deleteById(id);
-      log.info("llamada eliminada");
-    } catch (Exception e) {
-      log.error("Error al eliminar la llamada telefónica: {}", e.getMessage());
+    public List<PhoneCallResponseDto> getAllPhoneCalls() {
+        return phoneCallRepo
+            .findAll()
+            .stream()
+            .map(PhoneCallMapper::toPhoneCall)
+            .toList();
     }
-  }
 
+    public void deletePhoneCall(Long id) {
+        try {
+            if (!(phoneCallRepo.existsById(id))) {
+                throw new RuntimeException("la llamada no existe");
+            }
+            phoneCallRepo.deleteById(id);
+            log.info("llamada eliminada");
+        } catch (Exception e) {
+            log.error(
+                "Error al eliminar la llamada telefónica: {}",
+                e.getMessage()
+            );
+        }
+    }
 }

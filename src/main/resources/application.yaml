@@ -14,12 +14,12 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: false
-  logging:
-    file:
-      name: "logs/telecom.log"
-    level:
-      root: WARN
-      org.springframework: WARN
-      org.springframework.web: ERROR
-      org.hibernate: ERROR
-      com.teleco: INFO
+logging:
+  file:
+    name: "logs/telecom.log"
+  level:
+    root: WARN
+    org.springframework: WARN
+    org.springframework.web: ERROR
+    org.hibernate: ERROR
+    com.telecom: INFO

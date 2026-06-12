@@ -13,11 +13,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RolRequestDto {
-  @NotBlank(message = "nombre requerido")
-  private String name;
-  @NotBlank(message = "Descripcion requerida")
-  private String Descripcion;
-  @NotBlank(message = "id del usuario requerido")
-  private long userId;
 
+    @NotBlank(message = "nombre requerido")
+    private String name;
+
+    @NotBlank(message = "Descripcion requerida")
+    private String descripcion;
+
+    @NotBlank(message = "id del usuario requerido")
+    private long userId;
 }
