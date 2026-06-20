@@ -3,10 +3,13 @@ package com.telecom.call.mapper;
 import com.telecom.call.dto.request.RolRequestDto;
 import com.telecom.call.dto.response.RolResponseDto;
 import com.telecom.call.enums.RolType;
+import com.telecom.call.exception.RolInvaledException;
 import com.telecom.call.model.Rol;
 import java.util.Objects;
 import org.apache.catalina.util.StringUtil;
+import org.asteriskjava.manager.action.ExecAction;
 import org.springframework.util.StringUtils;
+import tools.jackson.databind.introspect.AnnotationCollector.TwoAnnotations;
 
 /*
  * mapper para rol transforma el rol a response y de response a rol
@@ -27,11 +30,19 @@ public class Rolmapper {
             .build();
     }
 
-    public static Rol toRol(RolRequestDto name) {
-        if (name == null || Objects.toString(name.getName(), "").isBlank()) {
+    public static Rol toRol(RolRequestDto reques) {
+        if (
+            reques == null ||
+            reques.getName().isBlank() ||
+            reques.getName() == null
+        ) {
             return null;
         }
-        return Rol.builder().name(parseName(name.getName())).build();
+        RolType rolype = parseName(reques.getName());
+        if (rolype == null) {
+            throw new RolInvaledException("rol invalido: " + reques.getName());
+        }
+        return Rol.builder().name(rolype).build();
     }
 
     private static RolType parseName(String name) {
@@ -47,8 +58,8 @@ public class Rolmapper {
         }
         try {
             return rol.toString().toUpperCase();
-        } catch (Exception e) {
-            return null;
+        } catch (IllegalArgumentException e) {
+            throw new RolInvaledException("error en el proceso ", e);
         }
     }
 }

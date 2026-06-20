@@ -1,6 +1,7 @@
 package com.telecom.call.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +21,6 @@ public class RolRequestDto {
     @NotBlank(message = "Descripcion requerida")
     private String descripcion;
 
-    @NotBlank(message = "id del usuario requerido")
+    @NotNull(message = "id del usuario requerido")
     private long userId;
 }
