@@ -26,7 +26,7 @@ public class PhoneCallResponseDto {
   private String context;
   private LocalDateTime start;
   private int duration;
-  private String chanel;
+  private String channel;
   private int billsec;
   private Long userId;
 

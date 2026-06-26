@@ -15,9 +15,9 @@ public class PhoneCallRequestDto {
   @NotBlank(message = "dato de destination obligatorio")
   private String destination;
   @NotBlank(message = "el tipo de contexto obligatorio")
-  private String contexType;
+  private String contextType;
   @NotBlank(message = "canal obligatorio")
-  private String chanel;
+  private String channel;
   @NotNull(message = "usario id obligatorio")
   private Long userId;
   @NotNull(message = "extensionId obligatorio")

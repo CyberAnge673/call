@@ -8,6 +8,7 @@ import com.telecom.call.repository.UserRepo;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /*
@@ -20,13 +21,18 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public void userSave(UserCreateRequestDto user) {
         try {
             User userEntity = UserMapper.toUser(user);
+            userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepo.save(userEntity);
             log.info("entidad guardada con exito");
         } catch (Exception e) {
-            log.error("ocurrio un error al guardar la entidad");
+            log.error("ocurrio un error al guardar la entidad: {}", e.getMessage());
+            throw e;
         }
     }
 

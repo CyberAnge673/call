@@ -41,15 +41,45 @@ public class ExtensionService {
     }
 
     public void updateExtension(ExtensionRequestDto extensionRequestDto) {
-        try {
-            log.info("procesando request");
-            Extension entity = ExtensionMapper.toExtension(extensionRequestDto);
-
-            extensionRepo.save(entity);
-        } catch (ExtensionNotFoundException exception) {
-            log.error("ocurrio error: {} " + exception.getMessage());
-            throw exception;
+        if (extensionRequestDto.getId() == null) {
+            log.error("id de extension no proporcionado para actualizar");
+            throw new IllegalArgumentException("id es requerido para actualizar");
         }
+
+        Extension existing = extensionRepo
+            .findById(extensionRequestDto.getId())
+            .orElseThrow(() -> new ExtensionNotFoundException("extension no encontrada con id: " + extensionRequestDto.getId()));
+
+        if (extensionRequestDto.getNumber() != null) {
+            existing.setNumber(extensionRequestDto.getNumber());
+        }
+        if (extensionRequestDto.getPassword() != null) {
+            existing.setPassword(extensionRequestDto.getPassword());
+        }
+        if (extensionRequestDto.getDisplayname() != null) {
+            existing.setDisplayname(extensionRequestDto.getDisplayname());
+        }
+        if (extensionRequestDto.getHost() != null) {
+            existing.setHost(extensionRequestDto.getHost());
+        }
+        if (extensionRequestDto.getStatus() != null) {
+            existing.setStatus(ExtensionMapper.parseStatusType(extensionRequestDto.getStatus()));
+        }
+        if (extensionRequestDto.getExtensionType() != null) {
+            existing.setExtensionType(ExtensionMapper.parseExtensionTypeEnum(extensionRequestDto.getExtensionType()));
+        }
+        if (extensionRequestDto.getContextType() != null) {
+            existing.setContextType(ExtensionMapper.parseContextType(extensionRequestDto.getContextType()));
+        }
+        if (extensionRequestDto.getUserId() != null) {
+            User user = userRepo
+                .findById(extensionRequestDto.getUserId())
+                .orElse(null);
+            existing.setUser(user);
+        }
+
+        extensionRepo.save(existing);
+        log.info("extension actualizada correctamente");
     }
 
     public boolean existExtension(Long id) {

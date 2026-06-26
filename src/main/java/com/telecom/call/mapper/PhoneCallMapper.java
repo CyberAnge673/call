@@ -24,23 +24,24 @@ public class PhoneCallMapper {
         }
         return PhoneCallResponseDto.builder()
             .callId(phoneCall.getId())
-            .extension(phoneCall.getExtension().getNumber())
+            .extension(phoneCall.getExtension() != null ? phoneCall.getExtension().getNumber() : null)
             .origin(phoneCall.getOrigin())
             .destination(phoneCall.getDestination())
             .context(phoneCall.getContext().toString())
             .start(phoneCall.getStart())
             .duration(phoneCall.getDuration())
-            .chanel(phoneCall.getChannel())
+            .channel(phoneCall.getChannel())
             .billsec(phoneCall.getBillsec())
-            .userId(phoneCall.getUser().getId())
+            .userId(phoneCall.getUser() != null ? phoneCall.getUser().getId() : null)
             .build();
     }
 
     public static PhoneCall toPhoneCall(PhoneCallRequestDto phoneCalldto) {
+        ContextType parsedContext = parseContextTypeSafe(phoneCalldto.getContextType());
         return PhoneCall.builder()
             .origin(phoneCalldto.getOrigin())
-            .channel(phoneCalldto.getChanel())
-            .context(ContextType.valueOf(phoneCalldto.getContexType()))
+            .channel(phoneCalldto.getChannel())
+            .context(parsedContext)
             .destination(phoneCalldto.getDestination())
             .extension(
                 Extension.builder().id(phoneCalldto.getExtensionId()).build()
@@ -50,6 +51,17 @@ public class PhoneCallMapper {
             .start(LocalDateTime.now())
             .user(User.builder().id(phoneCalldto.getUserId()).build())
             .build();
+    }
+
+    private static ContextType parseContextTypeSafe(String context) {
+        if (context == null || context.isBlank()) {
+            return ContextType.INTERNAL;
+        }
+        try {
+            return ContextType.valueOf(context.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return ContextType.INTERNAL;
+        }
     }
 
     private Optional<ContextType> parseContext(String context) {

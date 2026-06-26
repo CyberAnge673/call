@@ -26,7 +26,7 @@ public class ExtensionMapper {
         return ExtensionResponseDto.builder()
             .id(extension.getId())
             .number(extension.getNumber())
-            .idUser(extension.getUser().getId())
+            .idUser(extension.getUser() != null ? extension.getUser().getId() : null)
             .displayname(extension.getDisplayname())
             .extensionType(extension.getExtensionType().toString())
             .contextType(extension.getContextType().toString())

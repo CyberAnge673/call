@@ -15,6 +15,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ExtensionRequestDto {
 
+    private Long id;
+
     @NotBlank(message = "numero obligatorio")
     private String number;
 

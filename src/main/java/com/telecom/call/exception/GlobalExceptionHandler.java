@@ -28,6 +28,11 @@ public class GlobalExceptionHandler {
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
   }
 
+  @ExceptionHandler(SipFriendNotFoundException.class)
+  public ResponseEntity<String> handleSipFriendNotFound(SipFriendNotFoundException ex) {
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+  }
+
   @ExceptionHandler(Exception.class)
   public ResponseEntity<String> handleGeneral(Exception ex) {
     log.error("Error no manejado: ", ex);
